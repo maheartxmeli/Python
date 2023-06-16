@@ -47,5 +47,12 @@ class Administrator(User):
             print("Sorry, the credentials entered are invalid.")
 
 
+client = User()
+client.getLoginInfo()
 
+subscriber = Subscriber()
+subscriber.getLoginInfo()
+
+admin = Administrator()
+admin.getLoginInfo()
 
