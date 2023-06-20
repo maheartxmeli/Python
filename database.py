@@ -19,16 +19,10 @@ with conn:
 
     fileList = ("information.docx", "hello.txt", "myimage.png", "mymovie.png", "world.txt", "data.pdf", "myphoto.jpg")
     for x in fileList:
-        if x == fileList.endswith(".txt"):
+        if x.endswith(".txt"):
             cur.execute("INSERT INTO TBL_DATABASE(COL_FILE) VALUES (?)", \
             (x,))
-            break
+            print(x)
     conn.commit()
 conn.close()
 
-conn = sqlite3.connect('database.db')
-
-with conn:
-    cur = conn.cursor()
-    cur.execute("Select * FROM TBL_DATABASE")
-    print(item[1])
