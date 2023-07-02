@@ -14,7 +14,7 @@ class ParentWindow(Frame):
         self.master.title("File Transfer")
 
         # Creates button to select files from source directory
-        self.sourceDir_btn = Button(text="Select Source", width=20)
+        self.sourceDir_btn = Button(text="Select Source", width=20, command=self.sourceDir)
         # Positions source button in GU using tkinter grid()
         self.sourceDir_btn.grid(row=0,column=0,padx=(20,10),pady=(30,0))
 
@@ -24,7 +24,7 @@ class ParentWindow(Frame):
         self.source_dir.grid(row=0,column=1,columnspan=2,padx=(20,10),pady=(30,0))
 
         # Creates button to select destination of files from destination directory
-        self.destDir_btn = Button(text="Select Destination", width=20)
+        self.destDir_btn = Button(text="Select Destination", width=20, command=self.destDir)
         # Positions destination button in GUI using tkinter gruid() on the next row under the source button
         self.destDir_btn.grid(row=1,column=0,padx=(20,10),pady=(15,10))
 
