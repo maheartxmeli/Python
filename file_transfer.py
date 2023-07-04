@@ -3,8 +3,8 @@ from tkinter import *
 import tkinter.filedialog
 import os
 import shutil
-import time
 import datetime
+from datetime import datetime, timedelta
 
 
 class ParentWindow(Frame):
@@ -71,19 +71,15 @@ class ParentWindow(Frame):
         destination = self.destination_dir.get()
         # Gets a list of files in the source directory
         source_files = os.listdir(source)
-        # Calculates 24-hour window of files to be moved
-        secondsInDay = 24*60*60
-        now = datetime.datetime.fromtimestamp()
-        before = now - secondsInDay
-        # Gets files with timestamp within last 24 hours
-        def Files_Day(i):
-            return os.path.getmtime(i)
-        # Runs through each file in the source directory
-        for i in source_files:
-            # moves each file from the source to the destination if timestamp within 24 hours
-            if Files_Day > before:
+        # Moves files modified 24 hours or less to dest folder
+        def modfiles_day(i):
+            for i in source_files:
+                timestamp = os.path.getmtime(source_files)
+                if datetime.fromtimestamp(timestamp) >= (datetime.now()- timedelta(hours=24)):
+                    continue
                 shutil.move(source + '/' + i, destination)
                 print(i + ' was successfully transferred.')
+
 
     # Creates function to exit program
     def exit_program(self):
