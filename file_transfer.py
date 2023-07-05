@@ -72,11 +72,10 @@ class ParentWindow(Frame):
         # Gets a list of files in the source directory
         source_files = os.listdir(source)
         # Moves files modified 24 hours or less to dest folder
-        def modfiles_day(i):
-            for i in source_files:
-                timestamp = os.path.getmtime(source_files)
-                if datetime.fromtimestamp(timestamp) >= (datetime.now()- timedelta(hours=24)):
-                    continue
+        for i in source_files:
+            file_path = os.path.join(source,i)
+            timestamp = os.path.getmtime(file_path)
+            if datetime.fromtimestamp(timestamp) > (datetime.now()- timedelta(hours=24)):
                 shutil.move(source + '/' + i, destination)
                 print(i + ' was successfully transferred.')
 
